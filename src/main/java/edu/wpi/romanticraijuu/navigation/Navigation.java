@@ -1,6 +1,6 @@
-package edu.wpi.teamname.navigation;
+package edu.wpi.romanticraijuu.navigation;
 
-import edu.wpi.teamname.App;
+import edu.wpi.romanticraijuu.App;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 

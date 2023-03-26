@@ -2,7 +2,7 @@
 /* DO NOT DELETE THIS TEST */
 /*-------------------------*/
 
-package edu.wpi.teamname;
+package edu.wpi.romanticraijuu;
 
 import org.junit.jupiter.api.Test;
 
