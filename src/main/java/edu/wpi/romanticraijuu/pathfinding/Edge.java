@@ -3,13 +3,20 @@ package edu.wpi.romanticraijuu.pathfinding;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter@Setter
-public class Edge {
-    private String edgeID;
-    private Node startNode;
-    private Node endNode;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-    public Edge(Node startNode, Node endNode, String edgeID){
+public class Edge {
+    @Getter@Setter
+    private String edgeID;
+    @Getter@Setter
+    private String startNode;
+    @Getter@Setter
+    private String endNode;
+
+    public Edge(String startNode, String endNode, String edgeID){
         this.edgeID = edgeID;
         this.startNode = startNode;
         this.endNode = endNode;
