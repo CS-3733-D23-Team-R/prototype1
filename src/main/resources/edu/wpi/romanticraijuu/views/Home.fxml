@@ -18,7 +18,7 @@
                <children>
                   <ImageView fitHeight="200.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" translateY="20.0">
                      <image>
-                        <Image url="@../../../../../../../../../Prototype%201/prototype1/src/main/resources/edu/wpi/romanticraijuu/images/long_triangle.png" />
+                        <Image url="@../images/long_triangle.png" />
                      </image>
                   </ImageView>
                   <VBox prefHeight="200.0" prefWidth="100.0">
@@ -101,7 +101,7 @@
                   </MFXButton>
                   <ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="450.0">
                      <image>
-                        <Image url="@../../../../../../../../../Prototype%201/prototype1/src/main/resources/edu/wpi/romanticraijuu/images/Brigham_and_Womens_Hospital_logo.svg.png" />
+                        <Image url="@../images/Brigham_and_Womens_Hospital_logo.svg.png" />
                      </image>
                   </ImageView>
                </children>
