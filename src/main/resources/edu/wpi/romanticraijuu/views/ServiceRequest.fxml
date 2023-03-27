@@ -6,11 +6,11 @@
 
 
 <StackPane fx:controller="edu.wpi.romanticraijuu.controllers.ServiceRequestController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <MFXButton fx:id="backButton" text="Back">
-         <font>
-            <Font name="Nunito Sans Regular" size="16.0" />
-         </font>
-      </MFXButton>
-   </children>
+    <children>
+        <MFXButton fx:id="backButton" text="Back">
+            <font>
+                <Font name="Nunito Sans Regular" size="16.0" />
+            </font>
+        </MFXButton>
+    </children>
 </StackPane>
