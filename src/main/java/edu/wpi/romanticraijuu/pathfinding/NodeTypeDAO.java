@@ -13,7 +13,7 @@ public class NodeTypeDAO {
 
     public NodeTypeDAO(Connection connection, String tableName) throws SQLException {
         nodeTypes = new ArrayList<String>();
-        this.connection = connection;
+        connection = connection;
         this.tableName = tableName;
         this.statement = connection.createStatement();
 

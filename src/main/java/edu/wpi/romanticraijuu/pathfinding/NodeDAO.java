@@ -16,7 +16,7 @@ public class NodeDAO {
 
     public NodeDAO(Connection connection, String tablename) throws SQLException {
         nodes = new ArrayList<Node>();
-        this.connection = connection;
+        connection = connection;
         this.tablename = tablename;
         this.statement = connection.createStatement();
 
