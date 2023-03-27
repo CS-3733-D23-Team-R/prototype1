@@ -9,36 +9,31 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 public class EdgeDAO {
-    @Getter@Setter
-    ArrayList<Edge> edges;
 
+    String tablename;
+    ArrayList<Edge> edges;
     private Statement statement;
-    public EdgeDAO(ArrayList<Edge> aList, Connection connection) throws SQLException {
+    public EdgeDAO(ArrayList<Edge> aList, Connection connection, String tablename) throws SQLException {
+        this.tablename = tablename;
         this.edges = aList;
         Statement statement = connection.createStatement();
     }
     public ArrayList<Edge> getEdges(){
         return edges;
     }
-    public Edge addEdge(String startNodeID, String endNodeID, String edgeID, String tablename) throws SQLException {
+    public Edge addEdge(String startNodeID, String endNodeID, String edgeID) throws SQLException {
         Edge anEdge = new Edge(edgeID, startNodeID, endNodeID);
         edges.add(anEdge);
         statement.executeUpdate("INSERT INTO " + tablename + "(edgeID, startNode, endNode) VALUES(`"+ edgeID+"`,`"+startNodeID+"`,`"+endNodeID+"`");
         return anEdge;
     }
-    public ArrayList<String> getConnectedNodes(Node aNode){
+    public ArrayList<String> getConnectedNodes(String nodeID){
         ArrayList<String> aList = new ArrayList<>();
-        for(Edge anEdge:edges){
-            String currentNodeID = aNode.getNodeID();
-            String currentEdgeID = anEdge.getEdgeID();
+        for(Edge anEdge:edges) {
             String edgeStartNodeID = anEdge.getStartNode();
             String edgeEndNodeID = anEdge.getEndNode();
-            if(currentEdgeID.equals(currentNodeID) && !currentEdgeID.equals(currentNodeID)){
-                aList.add(currentEdgeID);
-            } else if(edgeStartNodeID.equals(currentNodeID) && !edgeEndNodeID.equals(currentNodeID)){
+            if(edgeStartNodeID.equals(nodeID) || edgeEndNodeID.equals(nodeID)) {
                 aList.add(edgeStartNodeID);
-            } else if(edgeEndNodeID.equals(currentNodeID) && !edgeEndNodeID.equals(currentNodeID)){
-                aList.add(edgeEndNodeID);
             }
         }
         return aList;
