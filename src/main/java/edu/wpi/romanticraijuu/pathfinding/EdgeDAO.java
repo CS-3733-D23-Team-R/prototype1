@@ -42,7 +42,9 @@ public class EdgeDAO {
         for(Edge anEdge:edges) {
             String edgeStartNodeID = anEdge.getStartNode();
             String edgeEndNodeID = anEdge.getEndNode();
-            if(edgeStartNodeID.equals(nodeID) || edgeEndNodeID.equals(nodeID)) {
+            if(edgeStartNodeID.equals(nodeID)) {
+                aList.add(edgeEndNodeID);
+            } else if (edgeEndNodeID.equals(nodeID)){
                 aList.add(edgeStartNodeID);
             }
         }
