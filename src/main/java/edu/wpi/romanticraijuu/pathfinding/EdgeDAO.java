@@ -13,10 +13,20 @@ public class EdgeDAO {
     String tableName;
     ArrayList<Edge> edges;
     private Statement statement;
-    public EdgeDAO(ArrayList<Edge> aList, Connection connection, String tableName) throws SQLException {
+    public EdgeDAO(Connection connection, String tableName) throws SQLException {
+        edges = new ArrayList<Edge>();
         this.tableName = tableName;
-        this.edges = aList;
         Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM "+tableName);
+        while(resultSet.next()){
+            String edgeID = resultSet.getString("edgeid");
+            String startNode = resultSet.getString("startnode");
+            String endNode = resultSet.getString("endnode");
+            Edge anEdge = new Edge(startNode, endNode, edgeID);
+            edges.add(anEdge);
+
+        }
+
     }
     public ArrayList<Edge> getEdges(){
         return edges;
