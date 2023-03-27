@@ -63,6 +63,24 @@ public class NodeDAO {
         throw new Exception("Node not found");
     }
 
+    public Node modifyNodeByID(String nodeID, int xCoord, int yCoord, String buildingFloor, String building, String nodeType, String longName, String shortName) throws Exception {
+        for (Node node : nodes){
+            boolean nodesAreSame = node.getNodeID().equals(nodeID);
+            if (nodesAreSame){
+                statement.executeUpdate("update " + tableName + " set " + "xCoord = " + xCoord + "yCoord = " + yCoord + "buildingFloor = " + buildingFloor + "building = " + building + "nodeType = " + nodeType + "longName = " + longName + "shortName = " + shortName);
+                node.setXCoord(xCoord);
+                node.setYCoord(yCoord);
+                node.setBuildingFloor(buildingFloor);
+                node.setBuilding(building);
+                node.setNodeType(nodeType);
+                node.setLongName(longName);
+                node.setShortName(shortName);
+                return node;
+            }
+        }
+        throw new Exception("Node not found");
+    }
+
     public Node addNode(String nodeID, int xCoord, int yCoord, String buildingFloor, String building, String nodeType, String longName, String shortName) throws SQLException {
         statement.executeUpdate("insert into " + tableName + "(nodeID, xcoord, ycoord, buildingFloor, building, nodeType, longName, shortName) VALUES ('" + nodeID + "', " + xCoord + ", " + yCoord + ", '" + buildingFloor + "', '" + building + "', " + nodeType + "', " + longName + "', '" + shortName + "');");
         Node node = new Node(nodeID, xCoord, yCoord, buildingFloor, building, nodeType, longName, shortName);
