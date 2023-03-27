@@ -10,11 +10,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 public class EdgeDAO {
 
-    String tablename;
+    String tableName;
     ArrayList<Edge> edges;
     private Statement statement;
-    public EdgeDAO(ArrayList<Edge> aList, Connection connection, String tablename) throws SQLException {
-        this.tablename = tablename;
+    public EdgeDAO(ArrayList<Edge> aList, Connection connection, String tableName) throws SQLException {
+        this.tableName = tableName;
         this.edges = aList;
         Statement statement = connection.createStatement();
     }
@@ -24,7 +24,7 @@ public class EdgeDAO {
     public Edge addEdge(String startNodeID, String endNodeID, String edgeID) throws SQLException {
         Edge anEdge = new Edge(edgeID, startNodeID, endNodeID);
         edges.add(anEdge);
-        statement.executeUpdate("INSERT INTO " + tablename + "(edgeID, startNode, endNode) VALUES(`"+ edgeID+"`,`"+startNodeID+"`,`"+endNodeID+"`");
+        statement.executeUpdate("INSERT INTO " + tableName + "(edgeID, startNode, endNode) VALUES(`"+ edgeID+"`,`"+startNodeID+"`,`"+endNodeID+"`");
         return anEdge;
     }
     public ArrayList<String> getConnectedNodes(String nodeID){

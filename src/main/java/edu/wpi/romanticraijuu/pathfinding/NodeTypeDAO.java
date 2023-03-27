@@ -9,16 +9,16 @@ import java.util.ArrayList;
 public class NodeTypeDAO {
     private ArrayList<String> nodeTypes;
     private Connection connection;
-    private String tablename;
+    private String tableName;
     private Statement statement;
 
-    public NodeTypeDAO(Connection connection, String tablename) throws SQLException {
+    public NodeTypeDAO(Connection connection, String tableName) throws SQLException {
         nodeTypes = new ArrayList<String>();
         this.connection = connection;
-        this.tablename = tablename;
+        this.tableName = tableName;
         this.statement = connection.createStatement();
 
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM " + tablename);
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM " + tableName);
 
         while (resultSet.next()){
             String nodeType = resultSet.getString("nodetype");
@@ -29,7 +29,7 @@ public class NodeTypeDAO {
     public void deleteNodeType(String type) throws SQLException, Exception {
         for (String nodeType : nodeTypes){
             if (type.equals(nodeType)){
-                statement.executeUpdate("delete from " + tablename + " where nodetype="+type);
+                statement.executeUpdate("delete from " + tableName + " where nodetype="+type);
                 nodeTypes.remove(type);
                 return;
             }
@@ -38,7 +38,7 @@ public class NodeTypeDAO {
     }
 
     public void addNodeType(String type) throws SQLException {
-        statement.executeUpdate("insert into " + tablename + "(nodetype) values(" + type + ");");
+        statement.executeUpdate("insert into " + tableName + "(nodetype) values(" + type + ");");
         nodeTypes.add(type);
     }
 }
