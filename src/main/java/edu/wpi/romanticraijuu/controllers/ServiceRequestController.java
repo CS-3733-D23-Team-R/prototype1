@@ -7,10 +7,10 @@ import javafx.fxml.FXML;
 
 public class ServiceRequestController {
 
-  @FXML MFXButton backButton;
+  @FXML MFXButton cancelButton;
 
   @FXML
   public void initialize() {
-    backButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
+    cancelButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
   }
 }
