@@ -11,16 +11,16 @@ import java.util.LinkedList;
 
 public class NodeDAO {
     private ArrayList<Node> nodes;
-    private String tablename;
+    private String tableName;
     private Statement statement;
 
-    public NodeDAO(Connection connection, String tablename) throws SQLException {
+    public NodeDAO(Connection connection, String tableName) throws SQLException {
         nodes = new ArrayList<Node>();
         connection = connection;
-        this.tablename = tablename;
+        this.tableName = tableName;
         this.statement = connection.createStatement();
 
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM " + tablename);
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM " + tableName);
 
         while (resultSet.next()){
             String nodeID = resultSet.getString("nodeid");
@@ -55,7 +55,7 @@ public class NodeDAO {
         for (Node node : nodes){
             boolean nodesAreSame = node.getNodeID().equals(nodeID);
             if (nodesAreSame){
-                statement.executeUpdate("delete from " + tablename + " where nodeid="+nodeID);
+                statement.executeUpdate("delete from " + tableName + " where nodeid="+nodeID);
                 nodes.remove(node);
                 return;
             }
@@ -64,7 +64,7 @@ public class NodeDAO {
     }
 
     public Node addNode(String nodeID, int xCoord, int yCoord, String buildingFloor, String building, String nodeType, String longName, String shortName) throws SQLException {
-        statement.executeUpdate("insert into " + tablename + "(nodeID, xcoord, ycoord, buildingFloor, building, nodeType, longName, shortName) VALUES ('" + nodeID + "', " + xCoord + ", " + yCoord + ", '" + buildingFloor + "', '" + building + "', " + nodeType + "', " + longName + "', '" + shortName + "');");
+        statement.executeUpdate("insert into " + tableName + "(nodeID, xcoord, ycoord, buildingFloor, building, nodeType, longName, shortName) VALUES ('" + nodeID + "', " + xCoord + ", " + yCoord + ", '" + buildingFloor + "', '" + building + "', " + nodeType + "', " + longName + "', '" + shortName + "');");
         Node node = new Node(nodeID, xCoord, yCoord, buildingFloor, building, nodeType, longName, shortName);
         nodes.add(node);
         return node;
