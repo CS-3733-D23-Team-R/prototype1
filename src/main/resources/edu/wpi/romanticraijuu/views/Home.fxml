@@ -44,7 +44,7 @@
                                     </MFXButton>
                                     <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" translateX="12.0" translateY="5.0">
                                        <image>
-                                          <Image url="@../../../../../../../../../Prototype%201/prototype1/src/main/resources/edu/wpi/romanticraijuu/images/TriangleArrow-Right.svg.png" />
+                                          <Image url="@../images/TriangleArrow-Right.svg.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -58,7 +58,7 @@
                                     </MFXButton>
                                     <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" translateX="12.0" translateY="5.0">
                                        <image>
-                                          <Image url="@../../../../../../../../../Prototype%201/prototype1/src/main/resources/edu/wpi/romanticraijuu/images/TriangleArrow-Right.svg.png" />
+                                          <Image url="@../images/TriangleArrow-Right.svg.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -72,7 +72,7 @@
                                     </MFXButton>
                                     <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true" translateX="12.0" translateY="5.0">
                                        <image>
-                                          <Image url="@../../../../../../../../../Prototype%201/prototype1/src/main/resources/edu/wpi/romanticraijuu/images/TriangleArrow-Right.svg.png" />
+                                          <Image url="@../images/TriangleArrow-Right.svg.png" />
                                        </image>
                                     </ImageView>
                                  </children>
