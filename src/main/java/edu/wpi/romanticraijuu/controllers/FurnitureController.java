@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 public class FurnitureController {
 
   @FXML MFXButton cancelButton;
+  @FXML MFXButton clearButton;
+  @FXML MFXButton submitButton;
 
   @FXML
   public void initialize() {
