@@ -11,7 +11,6 @@ import java.util.LinkedList;
 
 public class NodeDAO {
     private ArrayList<Node> nodes;
-    private Connection connection;
     private String tablename;
     private Statement statement;
 

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class NodeTypeDAO {
     private ArrayList<String> nodeTypes;
-    private Connection connection;
     private String tableName;
     private Statement statement;
 
