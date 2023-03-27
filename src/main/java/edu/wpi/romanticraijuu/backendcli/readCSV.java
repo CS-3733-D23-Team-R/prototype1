@@ -6,18 +6,33 @@ import java.util.Scanner;
 import java.sql.Statement;
 import edu.wpi.romanticraijuu.pathfinding.*;
 public class readCSV {
-    public static void readCSVFile(NodeDAO node, String filePath) throws Exception
-    {
-        //parsing a CSV file into Scanner class constructor
-        Statement aStatement = new Statement;
-        Scanner sc = new Scanner(new File(filePath));
+    Statement statement;
+    String filePathSlashName;
+    public static void readCSVFile(String fileName, Connection connection) throws Exception {
+        Statement aStatement = connection.createStatement();
+    }
 
-        while (sc.hasNext())  // TODO; FINISH IMPLEMENTATION
-        {
-            String line = sc.nextLine();
-            node.addNode();
+    public void importIntoNode() throws FileNotFoundException {
+        Scanner sc = new Scanner(new File(filePathSlashName));
+        sc.useDelimiter(",");
+        while (sc.hasNextLine()) {
+            String currentLine = sc.nextLine();
+            try(Scanner rowScanner = new Scanner(currentLine)){
+                rowScanner.useDelimiter(",");
+                while(rowScanner.hasNext()){
+
+                }
+            }
         }
-        sc.close();  //closes the scanner
+        sc.close();
+    }
+
+    public void importIntoNodeType(){
+
+    }
+
+    public void importIntoEdge(){
+
     }
 
 }
