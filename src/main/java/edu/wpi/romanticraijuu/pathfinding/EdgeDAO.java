@@ -20,10 +20,11 @@ public class EdgeDAO {
     public ArrayList<Edge> getEdges(){
         return edges;
     }
-    public void addEdge(String startNodeID, String endNodeID, String edgeID, String tablename) throws SQLException {
+    public Edge addEdge(String startNodeID, String endNodeID, String edgeID, String tablename) throws SQLException {
         Edge anEdge = new Edge(edgeID, startNodeID, endNodeID);
         edges.add(anEdge);
         statement.executeUpdate("INSERT INTO " + tablename + "(edgeID, startNode, endNode) VALUES(`"+ edgeID+"`,`"+startNodeID+"`,`"+endNodeID+"`");
+        return anEdge;
     }
     public ArrayList<String> getConnectedNodes(Node aNode){
         ArrayList<String> aList = new ArrayList<>();
