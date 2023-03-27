@@ -65,13 +65,13 @@ public class Pathfinder {
         HashMap<String, String> cameFrom = new HashMap<>();
         HashMap<String, Integer> costSoFar = new HashMap<>();
         //TODO
-        PriorityQueue<String> pQueue = new PriorityQueue<>();
-        pQueue.add(startID, 0);
+        PriorityQueue<QueueNode> pQueue = new PriorityQueue<>();
+        pQueue.add(new QueueNode(startID, 0));
         String currentNode;
         while(!pQueue.isEmpty()){
-            currentNode = pQueue.remove();
+            currentNode = pQueue.remove().getNodeID();
 
-            if(currentNode == endID){ break; }
+            if(currentNode.equals(endID)){ break; }
 
             ArrayList<String> neighbors = findNeighboringNodes(currentNode, endID);
             for (String neighbor : neighbors) {
@@ -79,7 +79,7 @@ public class Pathfinder {
                 if (costSoFar.containsKey(neighbor) || newCost < costSoFar.get(neighbor)){
                     costSoFar.replace(neighbor, newCost);
                     int priority = newCost + hueristic(neighbor, endID);
-                    pQueue.add(neighbor, newCost);
+                    pQueue.add(new QueueNode(neighbor, priority));
                     cameFrom.put(neighbor, currentNode);
                 }
             }
