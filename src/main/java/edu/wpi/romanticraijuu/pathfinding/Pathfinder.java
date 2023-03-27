@@ -12,16 +12,16 @@ public class Pathfinder {
         this.edges = edges;
     }
 
-    private ArrayList<String> findNeighboringNodes(String nodeID, String endID) {
+    private ArrayList<String> findNeighboringNodes(String nodeID, String endID) throws Exception {
         // ArrayList<Node> neighbors = new ArrayList<Node>();
         ArrayList<String> neighbors = edges.getConnectedNodes(nodeID);
         for (String neighbor : neighbors) {
             if (neighbor.equals(endID)) {
                 continue;
             }
-            Node node = nodes.getNodebyID(neighbor);
-            NodeType type = node.getNodeType();
-            if (type != NodeType.HALL && type != NodeType.ELEV && type != NodeType.STAI) {
+            Node node = nodes.getNodeByID(neighbor);
+            String type = node.getNodeType();
+            if (!type.equals("HALL") && !type.equals("ELEV") && !type.equals("STAI")) {
                 neighbors.remove(neighbor);
             }
         }
@@ -29,7 +29,7 @@ public class Pathfinder {
         return neighbors;
     }
 
-    public Path breadthFirstSearch(String startID, String endID) {
+    public Path breadthFirstSearch(String startID, String endID) throws Exception {
         Path path = new Path();
         HashMap<String, String> cameFrom = new HashMap<>();
         LinkedList<String> queue = new LinkedList<>(findNeighboringNodes(startID, endID));
