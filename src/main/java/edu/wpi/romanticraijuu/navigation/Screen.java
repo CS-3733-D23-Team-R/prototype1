@@ -3,7 +3,8 @@ package edu.wpi.romanticraijuu.navigation;
 public enum Screen {
   ROOT("views/Root.fxml"),
   HOME("views/Home.fxml"),
-  SERVICE_REQUEST("views/ServiceRequest.fxml");
+  SERVICE_REQUEST("views/ServiceRequest.fxml"),
+  SIGNAGE("views/Signage.fxml");
 
   private final String filename;
 
