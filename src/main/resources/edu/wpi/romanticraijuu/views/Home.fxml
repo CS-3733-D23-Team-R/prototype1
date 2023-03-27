@@ -51,7 +51,7 @@
                               </HBox>
                               <HBox prefHeight="20.0" prefWidth="200.0">
                                  <children>
-                                    <MFXButton fx:id="navigateButton1" text="Furniture Delivery Service Request" translateX="12.0" underline="true">
+                                    <MFXButton fx:id="furnitureButton" text="Furniture Delivery Service Request" translateX="12.0" underline="true">
                                        <font>
                                           <Font name="Times New Roman" size="18.0" />
                                        </font>
