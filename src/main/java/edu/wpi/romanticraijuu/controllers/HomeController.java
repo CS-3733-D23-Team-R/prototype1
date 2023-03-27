@@ -19,6 +19,7 @@ public class HomeController {
   @FXML
   public void initialize() {
     navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
+    navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE));
     mealButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
     exitButton.setOnMouseClicked(actionEvent -> Platform.exit());
   }

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<<<<<<< Updated upstream
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+=======
+>>>>>>> Stashed changes
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
