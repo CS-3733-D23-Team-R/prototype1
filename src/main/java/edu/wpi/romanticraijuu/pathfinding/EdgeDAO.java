@@ -17,7 +17,7 @@ public class EdgeDAO {
         edges = new ArrayList<Edge>();
         this.tableName = tableName;
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM "+tableName);
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM "+tableName+";");
         while(resultSet.next()){
             String edgeID = resultSet.getString("edgeid");
             String startNode = resultSet.getString("startnode");
@@ -34,7 +34,7 @@ public class EdgeDAO {
     public Edge addEdge(String startNodeID, String endNodeID, String edgeID) throws SQLException {
         Edge anEdge = new Edge(edgeID, startNodeID, endNodeID);
         edges.add(anEdge);
-        statement.executeUpdate("INSERT INTO " + tableName + "(edgeID, startNode, endNode) VALUES(`"+ edgeID+"`,`"+startNodeID+"`,`"+endNodeID+"`");
+        statement.executeUpdate("INSERT INTO " + tableName + "(edgeID, startNode, endNode) VALUES(`"+ edgeID+"`,`"+startNodeID+"`,`"+endNodeID+"`;");
         return anEdge;
     }
     public ArrayList<String> getConnectedNodes(String nodeID){
@@ -55,11 +55,16 @@ public class EdgeDAO {
         for (Edge edge : edges){
             boolean edgesAreSame = edge.getEdgeID().equals(edgeID);
             if (edgesAreSame){
-                statement.executeUpdate("delete from " + tableName + " where edgeid="+edgeID);
+                statement.executeUpdate("delete from " + tableName + " where edgeid="+edgeID + ";");
                 edges.remove(edge);
                 return;
             }
         }
         throw new TupleNotFoundException("Edge not found");
+    }
+
+    public void deleteAllEdges() throws SQLException {
+        statement.executeUpdate("delete from " + tableName + ";");
+        edges.removeAll(edges);
     }
 }

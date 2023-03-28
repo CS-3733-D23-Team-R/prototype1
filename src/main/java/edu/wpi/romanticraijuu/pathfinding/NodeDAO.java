@@ -55,7 +55,7 @@ public class NodeDAO {
         for (Node node : nodes){
             boolean nodesAreSame = node.getNodeID().equals(nodeID);
             if (nodesAreSame){
-                statement.executeUpdate("delete from " + tableName + " where nodeid="+nodeID);
+                statement.executeUpdate("delete from " + tableName + " where nodeid="+nodeID+";");
                 nodes.remove(node);
                 return;
             }
@@ -67,7 +67,7 @@ public class NodeDAO {
         for (Node node : nodes){
             boolean nodesAreSame = node.getNodeID().equals(nodeID);
             if (nodesAreSame){
-                statement.executeUpdate("update " + tableName + " set " + "xCoord = " + xCoord + "yCoord = " + yCoord + "buildingFloor = " + buildingFloor + "building = " + building + "nodeType = " + nodeType + "longName = " + longName + "shortName = " + shortName);
+                statement.executeUpdate("update " + tableName + " set " + "xCoord = " + xCoord + "yCoord = " + yCoord + "buildingFloor = " + buildingFloor + "building = " + building + "nodeType = " + nodeType + "longName = " + longName + "shortName = " + shortName + ";");
                 node.setXCoord(xCoord);
                 node.setYCoord(yCoord);
                 node.setBuildingFloor(buildingFloor);
@@ -97,5 +97,10 @@ public class NodeDAO {
         }
 
         return returnList;
+    }
+
+    public void deleteAllNodes() throws SQLException {
+        statement.executeUpdate("delete from " + tableName + ";");
+        nodes.removeAll(nodes);
     }
 }

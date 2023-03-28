@@ -17,7 +17,7 @@ public class NodeTypeDAO {
         this.tableName = tableName;
         this.statement = connection.createStatement();
 
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM " + tableName);
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM " + tableName + ";");
 
         while (resultSet.next()){
             String nodeType = resultSet.getString("nodetype");
@@ -28,7 +28,7 @@ public class NodeTypeDAO {
     public void deleteNodeType(String type) throws SQLException, TupleNotFoundException {
         for (String nodeType : nodeTypes){
             if (type.equals(nodeType)){
-                statement.executeUpdate("delete from " + tableName + " where nodetype="+type);
+                statement.executeUpdate("delete from " + tableName + " where nodetype="+type+";");
                 nodeTypes.remove(type);
                 return;
             }
@@ -39,5 +39,10 @@ public class NodeTypeDAO {
     public void addNodeType(String type) throws SQLException {
         statement.executeUpdate("insert into " + tableName + "(nodetype) values(" + type + ");");
         nodeTypes.add(type);
+    }
+
+    public void deleteAllNodeTypes() throws SQLException {
+        statement.executeUpdate("delete from " + tableName + ";");
+        nodeTypes.removeAll(nodeTypes);
     }
 }
