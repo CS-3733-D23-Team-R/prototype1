@@ -51,7 +51,7 @@ public class EdgeDAO {
         return aList;
     }
 
-    public void deleteEdgeByID(String edgeID) throws Exception {
+    public void deleteEdgeByID(String edgeID) throws TupleNotFoundException {
         for (Edge edge : edges){
             boolean edgesAreSame = edge.getEdgeID().equals(edgeID);
             if (edgesAreSame){
@@ -60,6 +60,6 @@ public class EdgeDAO {
                 return;
             }
         }
-        throw new Exception("Edge not found");
+        throw new TupleNotFoundException("Edge not found");
     }
 }

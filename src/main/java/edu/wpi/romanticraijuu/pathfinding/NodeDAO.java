@@ -42,16 +42,16 @@ public class NodeDAO {
     }
 
 
-    public Node getNodeByID(String nodeID) throws Exception {
+    public Node getNodeByID(String nodeID) throws TupleNotFoundException {
         for (Node node : nodes){
             boolean nodesAreSame = node.getNodeID().equals(nodeID);
             if (nodesAreSame)
                 return node;
         }
-        throw new Exception("Node not found");
+        throw new TupleNotFoundException("Node not found");
     }
 
-    public void deleteNodeByID(String nodeID) throws SQLException, Exception {
+    public void deleteNodeByID(String nodeID) throws SQLException, TupleNotFoundException {
         for (Node node : nodes){
             boolean nodesAreSame = node.getNodeID().equals(nodeID);
             if (nodesAreSame){
@@ -60,10 +60,10 @@ public class NodeDAO {
                 return;
             }
         }
-        throw new Exception("Node not found");
+        throw new TupleNotFoundException("Node not found");
     }
 
-    public Node modifyNodeByID(String nodeID, int xCoord, int yCoord, String buildingFloor, String building, String nodeType, String longName, String shortName) throws Exception {
+    public Node modifyNodeByID(String nodeID, int xCoord, int yCoord, String buildingFloor, String building, String nodeType, String longName, String shortName) throws TupleNotFoundException {
         for (Node node : nodes){
             boolean nodesAreSame = node.getNodeID().equals(nodeID);
             if (nodesAreSame){
@@ -78,7 +78,7 @@ public class NodeDAO {
                 return node;
             }
         }
-        throw new Exception("Node not found");
+        throw new TupleNotFoundException("Node not found");
     }
 
     public Node addNode(String nodeID, int xCoord, int yCoord, String buildingFloor, String building, String nodeType, String longName, String shortName) throws SQLException {

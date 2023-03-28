@@ -25,7 +25,7 @@ public class NodeTypeDAO {
         }
     }
 
-    public void deleteNodeType(String type) throws SQLException, Exception {
+    public void deleteNodeType(String type) throws SQLException, TupleNotFoundException {
         for (String nodeType : nodeTypes){
             if (type.equals(nodeType)){
                 statement.executeUpdate("delete from " + tableName + " where nodetype="+type);
@@ -33,7 +33,7 @@ public class NodeTypeDAO {
                 return;
             }
         }
-        throw new Exception("Node not found");
+        throw new TupleNotFoundException("Node not found");
     }
 
     public void addNodeType(String type) throws SQLException {
