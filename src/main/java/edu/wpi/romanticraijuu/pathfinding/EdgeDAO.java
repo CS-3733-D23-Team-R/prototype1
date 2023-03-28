@@ -51,7 +51,7 @@ public class EdgeDAO {
         return aList;
     }
 
-    public void deleteEdgeByID(String edgeID) throws TupleNotFoundException {
+    public void deleteEdgeByID(String edgeID) throws TupleNotFoundException, SQLException {
         for (Edge edge : edges){
             boolean edgesAreSame = edge.getEdgeID().equals(edgeID);
             if (edgesAreSame){

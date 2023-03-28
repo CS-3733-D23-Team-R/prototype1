@@ -63,7 +63,7 @@ public class NodeDAO {
         throw new TupleNotFoundException("Node not found");
     }
 
-    public Node modifyNodeByID(String nodeID, int xCoord, int yCoord, String buildingFloor, String building, String nodeType, String longName, String shortName) throws TupleNotFoundException {
+    public Node modifyNodeByID(String nodeID, int xCoord, int yCoord, String buildingFloor, String building, String nodeType, String longName, String shortName) throws TupleNotFoundException, SQLException {
         for (Node node : nodes){
             boolean nodesAreSame = node.getNodeID().equals(nodeID);
             if (nodesAreSame){
