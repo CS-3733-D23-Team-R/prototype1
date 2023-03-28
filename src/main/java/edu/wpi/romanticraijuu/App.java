@@ -32,7 +32,6 @@ public class App extends Application {
     final BorderPane root = loader.load();
 
     App.rootPane = root;
-
     final Scene scene = new Scene(root);
     primaryStage.setScene(scene);
     primaryStage.show();
