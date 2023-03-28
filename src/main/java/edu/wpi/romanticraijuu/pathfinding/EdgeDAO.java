@@ -50,4 +50,16 @@ public class EdgeDAO {
         }
         return aList;
     }
+
+    public void deleteEdgeByID(String edgeID) throws Exception {
+        for (Edge edge : edges){
+            boolean edgesAreSame = edge.getEdgeID().equals(edgeID);
+            if (edgesAreSame){
+                statement.executeUpdate("delete from " + tableName + " where edgeid="+edgeID);
+                edges.remove(edge);
+                return;
+            }
+        }
+        throw new Exception("Edge not found");
+    }
 }
