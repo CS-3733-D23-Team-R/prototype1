@@ -2,10 +2,7 @@ package edu.wpi.romanticraijuu.backendcli;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Scanner;
 import edu.wpi.romanticraijuu.pathfinding.*;
 
@@ -26,7 +23,7 @@ public class CLI {
             edgeDAO = new EdgeDAO(connection, "prototype1.edge");
 
             while (true){
-                String input = getInput("""
+                String input = getSpecificInput("""
                          Enter a number to select use case:
                          1- Navigate between locations.
                          2- Access database
@@ -69,42 +66,72 @@ public class CLI {
     }
 
     private static void runDatabaseCLI(){
-        String input = getInput("""
+        String input = getSpecificInput("""
                 Enter a number to select database operation:
-                1- Display node and edge information
-                2- Update node coordinates
-                3- Update name of a location node
-                4- Export node table into a csv file
-                5- Import a csv file into the node table
-                6- Display help on how to use this program
-                7- Exit the program""", new String[]{"1", "2", "3", "4", "5", "6", "7"});
+                1- List Nodes
+                2- List Edges
+                3- Display information for node
+                4- Display information for edge
+                5- Update node coordinates
+                6- Update name of a location node
+                7- Export node table into a csv file
+                8- Import a csv file into the node table
+                9- Display help on how to use this program
+                10- Exit the program""", new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"});
 
         switch (input){
             case "1":
-                
+                System.out.println("\nList of nodes:\n");
+                for (Node node : nodeDAO.getNodes())
+                    System.out.println("NodeID: " + node.getNodeID());
                 break;
             case "2":
-
+                System.out.println("\nList of edges:\n");
+                for (Edge edge : edgeDAO.getEdges())
+                    System.out.println("EdgeID: " + edge.getEdgeID());
                 break;
             case "3":
-
+                String userNode = getGeneralInput("Enter the NodeID of the desired node");
+                try{
+                    Node node = nodeDAO.getNodeByID(userNode);
+                    System.out.println("The node's ID is: " + node.getNodeID());
+                    System.out.println("The node's coordinates are: (" + node.getXCoord() + ", " + node.getYCoord() + ")");
+                    System.out.println("The node's floor is: " + node.getBuildingFloor());
+                    System.out.println("The node's building is: " + node.getBuilding());
+                    System.out.println("The node's type is: " + node.getNodeType());
+                    System.out.println("The node's long name is: " + node.getLongName());
+                    System.out.println("The node's short name is: " + node.getShortName());
+                } catch (TupleNotFoundException e) {
+                    System.out.println("Node not found. Please double check your information");
+                }
                 break;
             case "4":
-
+                String userEdge = getGeneralInput("Enter the EdgeID of the desired edge");
+                try{
+                    Edge edge = edgeDAO.getEdgeByID(userEdge);
+                    System.out.println("The edge's ID is: " + edge.getEdgeID());
+                    System.out.println("The edge's starting node's ID is: " + edge.getStartNode());
+                    System.out.println("The edge's ending node's ID is: " + edge.getEndNode());
+                } catch (TupleNotFoundException e) {
+                    System.out.println("Edge not found. Please double check your information");
+                }
                 break;
             case "5":
-
+                String userNodeCoords = getGeneralInput("Enter the NodeID of node you wish to modify");
                 break;
             case "6":
 
                 break;
             case "7":
+            case "8":
+            case "9":
+            case "10":
                 return;
         }
     }
 
 
-    private static String getInput(String prompt, String[] options){
+    private static String getSpecificInput(String prompt, String[] options){
         if (!prompt.equals(""))
             System.out.println(prompt);
 
@@ -117,5 +144,12 @@ public class CLI {
             }
             System.out.println("Input not recognized. Please try again");
         }
+    }
+
+    private static String getGeneralInput(String prompt){
+        if (!prompt.equals(""))
+            System.out.println(prompt);
+
+        return scanner.next();
     }
 }
