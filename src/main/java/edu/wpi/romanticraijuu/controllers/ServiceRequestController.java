@@ -1,5 +1,6 @@
 package edu.wpi.romanticraijuu.controllers;
 
+import edu.wpi.romanticraijuu.MealFields;
 import edu.wpi.romanticraijuu.navigation.Navigation;
 import edu.wpi.romanticraijuu.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -20,10 +21,7 @@ public class ServiceRequestController {
   @FXML MFXTextField notesField;
   @FXML ChoiceBox mealTypeBox;
 
-  private String name;
-  private String location;
-  private String notes;
-  private String mealType;
+  private MealFields mealField;
 
   ObservableList<String> mealTypeList =
       FXCollections.observableArrayList("Chicken", "Beef", "Fish");
@@ -39,14 +37,21 @@ public class ServiceRequestController {
 
   @FXML
   public void submit() {
-    name = nameField.getText();
-    location = locationField.getText();
-    mealType = mealTypeBox.getValue().toString();
+    String mealType = mealTypeBox.getValue().toString();
     if (mealType == "Select Meal") {
       mealType = "";
     }
-    notes = notesField.getText();
-    System.out.println(name + " " + location + " " + mealType + " " + notes);
+    mealField =
+        new MealFields(
+            nameField.getText(), locationField.getText(), notesField.getText(), mealType);
+    System.out.println(
+        mealField.getName()
+            + " "
+            + mealField.getLocation()
+            + " "
+            + mealField.getNotes()
+            + " "
+            + mealField.getMeal());
     Navigation.navigate(Screen.HOME);
   }
 
@@ -55,5 +60,6 @@ public class ServiceRequestController {
     nameField.clear();
     locationField.clear();
     notesField.clear();
+    mealTypeBox.setValue("Select Meal");
   }
 }

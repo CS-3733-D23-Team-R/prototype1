@@ -14,4 +14,8 @@ public class MealFields extends FormFields {
     super(name, location);
     this.meal = meal;
   }
+
+  public String getMeal() {
+    return meal;
+  }
 }
