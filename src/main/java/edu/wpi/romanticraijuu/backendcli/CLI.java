@@ -26,16 +26,20 @@ public class CLI {
             edgeDAO = new EdgeDAO(connection, "prototype1.edge");
 
             while (true){
-                String str = getInput("""
+                String input = getInput("""
                          Enter a number to select use case:
                          1- Navigate between locations.
-                         2- Access database""", new String[]{"1", "2"});
-                switch (str){
+                         2- Access database
+                         3- Exit the program""", new String[]{"1", "2"});
+                switch (input){
                     case "1":
                         runAlgorithmCLI();
                         break;
                     case "2":
-
+                        runDatabaseCLI();
+                        break;
+                    case "3":
+                        return;
                 }
 
             }
@@ -43,21 +47,6 @@ public class CLI {
         } catch (SQLException e) {
             System.out.println("Connection failure.");
             e.printStackTrace();
-        }
-    }
-
-    private static String getInput(String prompt, String[] options){
-        if (!prompt.equals(""))
-            System.out.println(prompt);
-
-        while (true){
-            String input = scanner.next();
-
-            for (String s : options ){
-                if (s.equalsIgnoreCase(input))
-                    return s;
-            }
-            System.out.println("Input not recognized. Please try again");
         }
     }
 
@@ -80,6 +69,53 @@ public class CLI {
     }
 
     private static void runDatabaseCLI(){
+        String input = getInput("""
+                Enter a number to select database operation:
+                1- Display node and edge information
+                2- Update node coordinates
+                3- Update name of a location node
+                4- Export node table into a csv file
+                5- Import a csv file into the node table
+                6- Display help on how to use this program
+                7- Exit the program""", new String[]{"1", "2", "3", "4", "5", "6", "7"});
 
+        switch (input){
+            case "1":
+                
+                break;
+            case "2":
+
+                break;
+            case "3":
+
+                break;
+            case "4":
+
+                break;
+            case "5":
+
+                break;
+            case "6":
+
+                break;
+            case "7":
+                return;
+        }
+    }
+
+
+    private static String getInput(String prompt, String[] options){
+        if (!prompt.equals(""))
+            System.out.println(prompt);
+
+        while (true){
+            String input = scanner.next();
+
+            for (String s : options ){
+                if (s.equalsIgnoreCase(input))
+                    return s;
+            }
+            System.out.println("Input not recognized. Please try again");
+        }
     }
 }
