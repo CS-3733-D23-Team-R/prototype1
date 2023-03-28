@@ -25,25 +25,7 @@ public class CLI {
       nodeDAO = new NodeDAO(connection, "prototype1.node");
       edgeDAO = new EdgeDAO(connection, "prototype1.edge");
 
-      while (true) { // TODO: remove all prompts here and use it as a wrapper for giveCLIOptions
-        String input =
-            getSpecificInput(
-                "Enter a number to select use case:\n"
-                    + "1- Navigate between locations.\n"
-                    + "2- Access database\n"
-                    + "3- Exit the program",
-                new String[] {"1", "2"});
-        switch (input) {
-          case "1":
-            runAlgorithmCLI();
-            break;
-          case "2":
-            giveCLIOptions();
-            break;
-          case "3":
-            return;
-        }
-      }
+      while (giveCLIOptions()) {}
 
     } catch (SQLException e) {
       System.out.println("Connection failure.");
@@ -53,7 +35,7 @@ public class CLI {
 
   private static void runAlgorithmCLI() {}
 
-  private static void giveCLIOptions() {
+  private static boolean giveCLIOptions() {
     String input =
         getSpecificInput(
             "Enter a number to select database operation:\n"
@@ -92,6 +74,7 @@ public class CLI {
         } catch (Exception e) {
           e.printStackTrace();
         }
+        break;
       case "3": // 3- List Edges
         System.out.println("\nList of edges:\n");
         for (Edge edge : edgeDAO.getEdges()) System.out.println("EdgeID: " + edge.getEdgeID());
@@ -150,7 +133,8 @@ public class CLI {
         break;
       case "8": // 8- Export node table into a csv file
         String outputCSVFilePath = getGeneralInput("Enter the desired output csv file");
-        // TODO: Sync with readCSV
+        // TODO: connect with code to write csv
+        break;
       case "9": // 9- Import a csv file into the node table
         String csvFilePath =
             getGeneralInput("Enter the path to your CSV file containing the new node information");
@@ -161,17 +145,18 @@ public class CLI {
 
         if (confirmation.equals(
             "no")) // removes user from the menu if they don't want to remove data
-        return;
+        return true; // reloads this function/menu
 
-        // TODO: Sync with writeCSV
-
+        // TODO: connect with code to read csv
+        break;
       case "10": // 10- Display help on how to use this program //TODO: FINISH WHEN THE CLI IS
         // FINALIZED
         System.out.println("Help Menu:\n");
-      case "11": // 11- Exit the program //TODO: make this exit the entire program (possibly by
-        // using boolean return type)
-        return;
+        break;
+      case "11": // 11- Exit the program
+        return false; // exits the program
     }
+    return true; // reloads this function/menu
   }
 
   private static String getSpecificInput(String prompt, String[] options) {
