@@ -67,4 +67,13 @@ public class EdgeDAO {
         statement.executeUpdate("delete from " + tableName + ";");
         edges.removeAll(edges);
     }
+
+    public Edge getEdgeByID(String edgeID) throws TupleNotFoundException{
+        for (Edge edge : edges){
+            boolean edgesAreSame = edge.getEdgeID().equals(edgeID);
+            if (edgesAreSame)
+                return edge;
+        }
+        throw new TupleNotFoundException("Node not found");
+    }
 }
