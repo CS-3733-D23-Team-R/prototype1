@@ -211,36 +211,36 @@ public class NodeDAO {
 
   public void writeCSV(String filePath) throws SQLException, IOException {
     ResultSet resultSet = statement.executeQuery("SELECT * FROM " + tableName + ";");
-    File csvFile = new File(filePath + ".csv");
+    File csvFile = new File(filePath);
     FileWriter outputFileWriter = new FileWriter(csvFile);
     outputFileWriter.write(
-            "nodeID,xCoord,yCoord,longName,shortName,building,buildingFloor,nodeType");
+        "nodeID,xCoord,yCoord,longName,shortName,building,buildingFloor,nodeType");
     while (resultSet.next()) {
       String aNodeID = resultSet.getString("nodeID");
       int anXCoord = resultSet.getInt("xCoord");
       int aYCoord = resultSet.getInt("yCoord");
       String aLongName = resultSet.getString("longName");
       String aShortName = resultSet.getString("shortName");
-      String aBuilding = resultSet.getString("buildng");
+      String aBuilding = resultSet.getString("building");
       String aBuildingFloor = resultSet.getString("buildingFloor");
       String aNodeType = resultSet.getString("nodeType");
       outputFileWriter.write("\n");
       outputFileWriter.write(
-              aNodeID
-                      + ","
-                      + anXCoord
-                      + ","
-                      + aYCoord
-                      + ","
-                      + aLongName
-                      + ","
-                      + aShortName
-                      + ","
-                      + aBuilding
-                      + ","
-                      + aBuildingFloor
-                      + ","
-                      + aNodeType);
+          aNodeID
+              + ","
+              + anXCoord
+              + ","
+              + aYCoord
+              + ","
+              + aLongName
+              + ","
+              + aShortName
+              + ","
+              + aBuilding
+              + ","
+              + aBuildingFloor
+              + ","
+              + aNodeType);
     }
     outputFileWriter.flush();
     outputFileWriter.close();
@@ -259,25 +259,27 @@ public class NodeDAO {
       String buildingFloor = sc.next();
       String nodeType = sc.next();
       statement.executeUpdate(
-              "insert into " + tableName
-                      + "(nodeID, xcoord, ycoord, buildingFloor, building, nodeType, longName, shortName) VALUES ('"
-                      + nodeID
-                      + "', "
-                      + xCoord
-                      + ", "
-                      + yCoord
-                      + ", '"
-                      + buildingFloor
-                      + "', '"
-                      + building
-                      + "', "
-                      + nodeType
-                      + "', "
-                      + longName
-                      + "', '"
-                      + shortName
-                      + "');");
-      Node aNode = new Node(nodeID, xCoord, yCoord, longName, shortName, building, buildingFloor, nodeType);
+          "insert into "
+              + tableName
+              + "(nodeID, xcoord, ycoord, buildingFloor, building, nodeType, longName, shortName) VALUES ('"
+              + nodeID
+              + "', "
+              + xCoord
+              + ", "
+              + yCoord
+              + ", '"
+              + buildingFloor
+              + "', '"
+              + building
+              + "', "
+              + nodeType
+              + "', "
+              + longName
+              + "', '"
+              + shortName
+              + "');");
+      Node aNode =
+          new Node(nodeID, xCoord, yCoord, longName, shortName, building, buildingFloor, nodeType);
       nodes.add(aNode);
     }
 

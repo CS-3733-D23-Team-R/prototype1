@@ -1,6 +1,8 @@
 package edu.wpi.romanticraijuu.backendcli;
 
 import edu.wpi.romanticraijuu.pathfinding.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -139,22 +141,25 @@ public class CLI {
         break;
       case "8": // 8- Export node table into a csv file
         String outputCSVFilePath = getGeneralInput("Enter the desired output csv file");
-
-        // TODO: connect with code to write csv
+        try {
+          nodeDAO.writeCSV(outputCSVFilePath);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
         break;
       case "9": // 9- Import a csv file into the node table
-        String csvFilePath =
+        String inputCSVFilePath =
             getGeneralInput("Enter the path to your CSV file containing the new node information");
-        String confirmation =
-            getSpecificInput(
-                "This will delete add data stored within the node table. \nEnter \"yes\" to confirm or \"no\" to cancel the change.",
-                new String[] {"yes", "no"});
 
-        if (confirmation.equals(
-            "no")) // removes user from the menu if they don't want to remove data
-        return true; // reloads this function/menu
-
-        // TODO: connect with code to read csv
+        try {
+          nodeDAO.readCSV(inputCSVFilePath);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } catch (FileNotFoundException e) {
+          e.printStackTrace();
+        }
         break;
       case "10": // 10- Display help on how to use this program //TODO: FINISH WHEN THE CLI IS
         // FINALIZED
