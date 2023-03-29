@@ -171,9 +171,7 @@ public class CLI {
         String outputCSVFilePath = getGeneralInput("Enter the desired output csv file");
         try {
           nodeDAO.writeCSV(outputCSVFilePath);
-        } catch (SQLException e) {
-          e.printStackTrace();
-        } catch (IOException e) {
+        } catch (SQLException | IOException e) {
           e.printStackTrace();
         }
         break;
@@ -183,9 +181,7 @@ public class CLI {
 
         try {
           nodeDAO.readCSV(inputCSVFilePath);
-        } catch (SQLException e) {
-          e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        } catch (SQLException | FileNotFoundException e) {
           e.printStackTrace();
         }
         break;
