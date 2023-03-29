@@ -92,7 +92,8 @@ public class CLI {
           System.out.println("The node's long name is: " + node.getLongName());
           System.out.println("The node's short name is: " + node.getShortName());
         } catch (TupleNotFoundException e) {
-          System.out.println("Node not found. Please double check your information");
+          // System.out.println("Node not found. Please double check your information");
+          e.printStackTrace();
         }
         break;
       case "5": // 5- Display information for edge
@@ -103,7 +104,8 @@ public class CLI {
           System.out.println("The edge's starting node's ID is: " + edge.getStartNode());
           System.out.println("The edge's ending node's ID is: " + edge.getEndNode());
         } catch (TupleNotFoundException e) {
-          System.out.println("Edge not found. Please double check your information");
+          // System.out.println("Edge not found. Please double check your information");
+          e.printStackTrace();
         }
         break;
       case "6": // 6- Update node coordinates
@@ -114,9 +116,11 @@ public class CLI {
           nodeDAO.modifyNodeXCoordByID(userNodeID, xCoord);
           nodeDAO.modifyNodeYCoordByID(userNodeID, yCoord);
         } catch (SQLException e) {
-          System.out.println("There was an error with accessing the database");
+          // System.out.println("There was an error with accessing the database");
+          e.printStackTrace();
         } catch (TupleNotFoundException e) {
-          System.out.println("Node not found. Please double check your information");
+          // System.out.println("Node not found. Please double check your information");
+          e.printStackTrace();
         }
         break;
       case "7": // 7- Update name of a location node
@@ -125,9 +129,11 @@ public class CLI {
         try {
           nodeDAO.modifyNodeLongNameByID(userNodeID, longName);
         } catch (SQLException e) {
-          System.out.println("There was an error with accessing the database");
+          // System.out.println("There was an error with accessing the database");
+          e.printStackTrace();
         } catch (TupleNotFoundException e) {
-          System.out.println("Node not found. Please double check your information");
+          // System.out.println("Node not found. Please double check your information");
+          e.printStackTrace();
         }
 
         break;

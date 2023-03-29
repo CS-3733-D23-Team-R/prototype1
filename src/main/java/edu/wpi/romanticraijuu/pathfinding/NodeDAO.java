@@ -60,32 +60,11 @@ public class NodeDAO {
     throw new TupleNotFoundException("Node not found");
   }
 
-  //    public Node modifyNodeByID(String nodeID, int xCoord, int yCoord, String buildingFloor,
-  // String building, String nodeType, String longName, String shortName) throws
-  // TupleNotFoundException, SQLException {
-  //        for (Node node : nodes){
-  //            boolean nodesAreSame = node.getNodeID().equals(nodeID);
-  //            if (nodesAreSame){
-  //                statement.executeUpdate("update " + tableName + " set " + "xCoord = " + xCoord +
-  // "yCoord = " + yCoord + "buildingFloor = " + buildingFloor + "building = " + building +
-  // "nodeType = " + nodeType + "longName = " + longName + "shortName = " + shortName + ";");
-  //                node.setXCoord(xCoord);
-  //                node.setYCoord(yCoord);
-  //                node.setBuildingFloor(buildingFloor);
-  //                node.setBuilding(building);
-  //                node.setNodeType(nodeType);
-  //                node.setLongName(longName);
-  //                node.setShortName(shortName);
-  //                return node;
-  //            }
-  //        }
-  //        throw new TupleNotFoundException("Node not found");
-  //    }
-
   public Node modifyNodeXCoordByID(String nodeID, int xCoord)
       throws TupleNotFoundException, SQLException {
     Node node = this.getNodeByID(nodeID);
-    statement.executeUpdate("update " + tableName + " set xCoord=" + xCoord + ";");
+    statement.executeUpdate(
+        "update " + tableName + " set xCoord=\'" + xCoord + "\' where nodeid=\'" + nodeID + "\';");
     node.setXCoord(xCoord);
     return node;
   }
@@ -93,7 +72,8 @@ public class NodeDAO {
   public Node modifyNodeYCoordByID(String nodeID, int yCoord)
       throws TupleNotFoundException, SQLException {
     Node node = this.getNodeByID(nodeID);
-    statement.executeUpdate("update " + tableName + " set yCoord=" + yCoord + ";");
+    statement.executeUpdate(
+        "update " + tableName + " set yCoord=\'" + yCoord + "\' where nodeid=\'" + nodeID + "\';");
     node.setYCoord(yCoord);
     return node;
   }
@@ -101,7 +81,14 @@ public class NodeDAO {
   public Node modifyNodeFloorByID(String nodeID, String buildingFloor)
       throws TupleNotFoundException, SQLException {
     Node node = this.getNodeByID(nodeID);
-    statement.executeUpdate("update " + tableName + " set buildingFloor=" + buildingFloor + ";");
+    statement.executeUpdate(
+        "update "
+            + tableName
+            + " set buildingFloor=\'"
+            + buildingFloor
+            + "\' where nodeid=\'"
+            + nodeID
+            + "\';");
     node.setBuildingFloor(buildingFloor);
     return node;
   }
@@ -109,7 +96,14 @@ public class NodeDAO {
   public Node modifyNodeBuildingByID(String nodeID, String building)
       throws TupleNotFoundException, SQLException {
     Node node = this.getNodeByID(nodeID);
-    statement.executeUpdate("update " + tableName + " set building=" + building + ";");
+    statement.executeUpdate(
+        "update "
+            + tableName
+            + " set building=\'"
+            + building
+            + "\' where nodeid=\'"
+            + nodeID
+            + "\';");
     node.setBuilding(building);
     return node;
   }
@@ -117,7 +111,14 @@ public class NodeDAO {
   public Node modifyNodeTypeByID(String nodeID, String nodeType)
       throws TupleNotFoundException, SQLException {
     Node node = this.getNodeByID(nodeID);
-    statement.executeUpdate("update " + tableName + " set nodetype=" + nodeType + ";");
+    statement.executeUpdate(
+        "update "
+            + tableName
+            + " set nodetype=\'"
+            + nodeType
+            + "\' where nodeid=\'"
+            + nodeID
+            + "\';");
     node.setNodeType(nodeType);
     return node;
   }
@@ -125,7 +126,14 @@ public class NodeDAO {
   public Node modifyNodeLongNameByID(String nodeID, String longName)
       throws TupleNotFoundException, SQLException {
     Node node = this.getNodeByID(nodeID);
-    statement.executeUpdate("update " + tableName + " set longName=" + longName + ";");
+    statement.executeUpdate(
+        "update "
+            + tableName
+            + " set longName=\'"
+            + longName
+            + "\' where nodeid=\'"
+            + nodeID
+            + "\';");
     node.setLongName(longName);
     return node;
   }
@@ -133,7 +141,14 @@ public class NodeDAO {
   public Node modifyNodeShortNameByID(String nodeID, String shortName)
       throws TupleNotFoundException, SQLException {
     Node node = this.getNodeByID(nodeID);
-    statement.executeUpdate("update " + tableName + " set shortName=" + shortName + ";");
+    statement.executeUpdate(
+        "update "
+            + tableName
+            + " set shortName=\'"
+            + shortName
+            + "\' where nodeid=\'"
+            + nodeID
+            + "\';");
     node.setShortName(shortName);
     return node;
   }
