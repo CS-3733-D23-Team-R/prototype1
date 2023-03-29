@@ -13,8 +13,8 @@ import java.util.Scanner;
 
 public class EdgeDAO {
 
-  String tableName;
-  ArrayList<Edge> edges;
+  private String tableName;
+  private ArrayList<Edge> edges;
   private Statement statement;
 
   public EdgeDAO(Connection connection, String tableName) throws SQLException {
