@@ -64,7 +64,6 @@ public class Pathfinder {
         Path path = new Path();
         HashMap<String, String> cameFrom = new HashMap<>();
         HashMap<String, Integer> costSoFar = new HashMap<>();
-        //TODO
         PriorityQueue<QueueNode> pQueue = new PriorityQueue<>();
         pQueue.add(new QueueNode(startID, 0));
         String currentNode;
@@ -73,7 +72,7 @@ public class Pathfinder {
 
             if(currentNode.equals(endID)){ break; }
 
-            ArrayList<String> neighbors = findNeighboringNodes(currentNode, endID);
+            ArrayList<String> neighbors = edges.getConnectedNodes(currentNode);
             for (String neighbor : neighbors) {
                 int newCost = costSoFar.get(currentNode) + nodeDist(currentNode, neighbor);
                 if (costSoFar.containsKey(neighbor) || newCost < costSoFar.get(neighbor)){
