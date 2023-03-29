@@ -12,4 +12,8 @@ public class FurnitureFields extends FormFields {
     super(name, location);
     this.furniture = furniture;
   }
+
+  public String getFurniture() {
+    return furniture;
+  }
 }
