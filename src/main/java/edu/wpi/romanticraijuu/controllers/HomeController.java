@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.layout.GridPane;
 import org.controlsfx.control.PopOver;
 
 public class HomeController {
@@ -17,11 +18,14 @@ public class HomeController {
   @FXML MFXButton furnitureButton;
   @FXML MFXButton helpButton;
   @FXML MFXButton exitButton;
+  @FXML GridPane gridPane;
 
   private static Parent root;
 
   @FXML
   public void initialize() {
+    gridPane.setStyle("-fx-background-color: #FFFFFF;");
+
     navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
     navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE));
     mealButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
