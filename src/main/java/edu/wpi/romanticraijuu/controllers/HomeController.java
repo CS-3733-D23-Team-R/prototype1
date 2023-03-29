@@ -26,9 +26,9 @@ public class HomeController {
   public void initialize() {
     gridPane.setStyle("-fx-background-color: #FFFFFF;");
 
-    navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
+    navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
     navigateButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SIGNAGE));
-    mealButton.setOnMouseClicked(event -> Navigation.navigate(Screen.SERVICE_REQUEST));
+    mealButton.setOnMouseClicked(event -> Navigation.navigate(Screen.MEAL_REQUEST));
     exitButton.setOnMouseClicked(actionEvent -> Platform.exit());
     furnitureButton.setOnMouseClicked(event -> Navigation.navigate(Screen.FURNITURE_REQUEST));
 

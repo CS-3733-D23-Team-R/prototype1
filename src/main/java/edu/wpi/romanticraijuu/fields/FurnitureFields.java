@@ -1,4 +1,4 @@
-package edu.wpi.romanticraijuu;
+package edu.wpi.romanticraijuu.fields;
 
 public class FurnitureFields extends FormFields {
   private String furniture;

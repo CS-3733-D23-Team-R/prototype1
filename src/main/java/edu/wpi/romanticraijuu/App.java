@@ -34,7 +34,7 @@ public class App extends Application {
             getClass().getResourceAsStream("images/Brigham_and_Womens_Hospital_logo.svg.png"));
     primaryStage.getIcons().add(icon);
 
-    final FXMLLoader loader = new FXMLLoader(App.class.getResource("views/root.fxml"));
+    final FXMLLoader loader = new FXMLLoader(App.class.getResource("views/Root.fxml"));
     final BorderPane root = loader.load();
 
     App.rootPane = root;

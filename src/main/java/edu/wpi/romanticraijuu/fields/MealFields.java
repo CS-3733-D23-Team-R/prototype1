@@ -1,6 +1,4 @@
-package edu.wpi.romanticraijuu;
-
-import java.awt.*;
+package edu.wpi.romanticraijuu.fields;
 
 public class MealFields extends FormFields {
   private String meal;

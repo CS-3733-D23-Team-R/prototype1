@@ -1,17 +1,16 @@
 package edu.wpi.romanticraijuu.controllers;
 
-import edu.wpi.romanticraijuu.MealFields;
+import edu.wpi.romanticraijuu.fields.MealFields;
 import edu.wpi.romanticraijuu.navigation.Navigation;
 import edu.wpi.romanticraijuu.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import java.awt.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 
-public class ServiceRequestController {
+public class MealRequestController {
 
   @FXML MFXButton cancelButton;
   @FXML MFXButton clearButton;

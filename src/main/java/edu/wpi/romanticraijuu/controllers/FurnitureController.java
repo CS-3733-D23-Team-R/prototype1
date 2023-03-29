@@ -1,6 +1,6 @@
 package edu.wpi.romanticraijuu.controllers;
 
-import edu.wpi.romanticraijuu.FurnitureFields;
+import edu.wpi.romanticraijuu.fields.FurnitureFields;
 import edu.wpi.romanticraijuu.navigation.Navigation;
 import edu.wpi.romanticraijuu.navigation.Screen;
 import io.github.palexdev.materialfx.controls.MFXButton;
