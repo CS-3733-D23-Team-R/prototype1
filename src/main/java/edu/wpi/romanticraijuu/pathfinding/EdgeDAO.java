@@ -98,13 +98,15 @@ public class EdgeDAO {
       String startNode = sc.next();
       String endNode = sc.next();
       statement.executeUpdate(
-              "INSERT INTO " + tableName + "(edgeID, startNode, endNode) VALUES ('"
-                      + edgeID
-                      + "','"
-                      + startNode
-                      + "','"
-                      + endNode
-                      + "');");
+          "INSERT INTO "
+              + tableName
+              + "(edgeID, startNode, endNode) VALUES ('"
+              + edgeID
+              + "','"
+              + startNode
+              + "','"
+              + endNode
+              + "');");
       Edge anEdge = new Edge(startNode, endNode, edgeID);
       edges.add(anEdge);
     }
