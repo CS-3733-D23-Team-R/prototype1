@@ -56,14 +56,14 @@ public class NodeTypeDAO {
     sc.useDelimiter(",");
     while (sc.hasNextLine()) {
       String nodeType = sc.next();
-      statement.executeUpdate("INSERT INTO nodeType(nodeType) VALUES('" + nodeType + "');");
+      statement.executeUpdate("INSERT INTO" + tableName + "VALUES('" + nodeType + "');");
       nodeTypes.add(nodeType);
     }
     sc.close();
   }
 
   public void writeCSV(String filePath) throws SQLException, IOException {
-    ResultSet resultSet = statement.executeQuery("SELECT * FROM nodeType");
+    ResultSet resultSet = statement.executeQuery("SELECT * FROM " + tableName + ";");
     File csvFile = new File(filePath);
     FileWriter outputFileWriter = new FileWriter(csvFile);
     outputFileWriter.write("nodeType");

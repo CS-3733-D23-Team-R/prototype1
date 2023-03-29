@@ -210,7 +210,7 @@ public class NodeDAO {
   }
 
   public void writeCSV(String filePath) throws SQLException, IOException {
-    ResultSet resultSet = statement.executeQuery("SELECT * FROM node");
+    ResultSet resultSet = statement.executeQuery("SELECT * FROM " + tableName + ";");
     File csvFile = new File(filePath + ".csv");
     FileWriter outputFileWriter = new FileWriter(csvFile);
     outputFileWriter.write(
@@ -259,7 +259,7 @@ public class NodeDAO {
       String buildingFloor = sc.next();
       String nodeType = sc.next();
       statement.executeUpdate(
-              "insert into node"
+              "insert into " + tableName
                       + "(nodeID, xcoord, ycoord, buildingFloor, building, nodeType, longName, shortName) VALUES ('"
                       + nodeID
                       + "', "

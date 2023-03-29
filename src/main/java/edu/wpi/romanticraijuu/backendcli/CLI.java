@@ -139,6 +139,7 @@ public class CLI {
         break;
       case "8": // 8- Export node table into a csv file
         String outputCSVFilePath = getGeneralInput("Enter the desired output csv file");
+
         // TODO: connect with code to write csv
         break;
       case "9": // 9- Import a csv file into the node table

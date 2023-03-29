@@ -98,7 +98,7 @@ public class EdgeDAO {
       String startNode = sc.next();
       String endNode = sc.next();
       statement.executeUpdate(
-              "INSERT INTO edge(edgeID, startNode, endNode) VALUES ('"
+              "INSERT INTO " + tableName + "(edgeID, startNode, endNode) VALUES ('"
                       + edgeID
                       + "','"
                       + startNode
@@ -112,7 +112,7 @@ public class EdgeDAO {
   }
 
   public void writeCSV(String filePath) throws SQLException, IOException {
-    ResultSet resultSet = statement.executeQuery("SELECT * FROM edge");
+    ResultSet resultSet = statement.executeQuery("SELECT * FROM " + tableName + ";");
     File csvFile = new File(filePath);
     FileWriter outputFileWriter = new FileWriter(csvFile);
     outputFileWriter.write("edgeID,startNode,endNode");
