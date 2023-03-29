@@ -61,10 +61,18 @@ public class CLI {
         for (Node node : nodeDAO.getNodes()) System.out.println("NodeID: " + node.getNodeID());
         break;
       case "2": // 2- Display pathes between nodes
-        System.out.println("Enter starting node ID: ");
-        String startID = scanner.next();
-        System.out.println("Enter ending node ID: ");
-        String endID = scanner.next();
+        String startID = getGeneralInput("Enter starting node ID: ");
+        if (!isValidNode(startID)){
+          System.out.println("That node is invalid. Please double check your node and then try again");
+          return true;
+        }
+
+        String endID = getGeneralInput("Enter ending node ID: ");
+        if (!isValidNode(endID)){
+          System.out.println("That node is invalid. Please double check your node and then try again");
+          return true;
+        }
+
         Pathfinder pf = new Pathfinder(nodeDAO, edgeDAO);
         try {
           Path path = pf.breadthFirstSearch(startID, endID);
@@ -83,6 +91,11 @@ public class CLI {
         break;
       case "4": // 4- Display information for node
         userNodeID = getGeneralInput("Enter the NodeID of the desired node");
+        if (!isValidNode(userNodeID)){
+          System.out.println("That node is invalid. Please double check your node and then try again");
+          return true;
+        }
+
         try {
           Node node = nodeDAO.getNodeByID(userNodeID);
           System.out.println("The node's ID is: " + node.getNodeID());
@@ -100,6 +113,11 @@ public class CLI {
         break;
       case "5": // 5- Display information for edge
         userEdgeID = getGeneralInput("Enter the EdgeID of the desired edge");
+        if (!isValidEdge(userEdgeID)){
+          System.out.println("That edge is invalid. Please double check your edge and then try again");
+          return true;
+        }
+
         try {
           Edge edge = edgeDAO.getEdgeByID(userEdgeID);
           System.out.println("The edge's ID is: " + edge.getEdgeID());
@@ -112,6 +130,11 @@ public class CLI {
         break;
       case "6": // 6- Update node coordinates
         userNodeID = getGeneralInput("Enter the NodeID of node you wish to modify");
+        if (!isValidNode(userNodeID)){
+          System.out.println("That node is invalid. Please double check your node and then try again");
+          return true;
+        }
+
         int xCoord = getIntegerInput("Enter the new X-Coordinate: ");
         int yCoord = getIntegerInput("Enter the new Y-Coordinate: ");
         try {
@@ -127,6 +150,11 @@ public class CLI {
         break;
       case "7": // 7- Update name of a location node
         userNodeID = getGeneralInput("Enter the NodeID of node you wish to modify");
+        if (!isValidNode(userNodeID)){
+          System.out.println("That node is invalid. Please double check your node and then try again");
+          return true;
+        }
+
         String longName = getGeneralInput("Enter the new name");
         try {
           nodeDAO.modifyNodeLongNameByID(userNodeID, longName);
@@ -162,7 +190,6 @@ public class CLI {
         }
         break;
       case "10": // 10- Display help on how to use this program //TODO: FINISH WHEN THE CLI IS
-        // FINALIZED
         System.out.println("Help Menu:\n");
         break;
       case "11": // 11- Exit the program
@@ -194,5 +221,23 @@ public class CLI {
     if (!prompt.equals("")) System.out.println(prompt);
 
     return scanner.nextInt();
+  }
+
+  private static boolean isValidNode(String nodeID) {
+    try{
+      nodeDAO.getNodeByID(nodeID);
+      return true;
+    } catch (TupleNotFoundException e) {
+      return false;
+    }
+  }
+
+  private static boolean isValidEdge(String edgeID) {
+    try{
+      edgeDAO.getEdgeByID(edgeID);
+      return true;
+    } catch (TupleNotFoundException e) {
+      return false;
+    }
   }
 }
