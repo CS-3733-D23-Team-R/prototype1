@@ -1,11 +1,16 @@
 package edu.wpi.romanticraijuu.pathfinding;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class NodeDAO {
   private ArrayList<Node> nodes;
@@ -202,5 +207,80 @@ public class NodeDAO {
   public void deleteAllNodes() throws SQLException {
     statement.executeUpdate("delete from " + tableName + ";");
     nodes.removeAll(nodes);
+  }
+
+  public void writeCSV(String filePath) throws SQLException, IOException {
+    ResultSet resultSet = statement.executeQuery("SELECT * FROM node");
+    File csvFile = new File(filePath + ".csv");
+    FileWriter outputFileWriter = new FileWriter(csvFile);
+    outputFileWriter.write(
+            "nodeID,xCoord,yCoord,longName,shortName,building,buildingFloor,nodeType");
+    while (resultSet.next()) {
+      String aNodeID = resultSet.getString("nodeID");
+      int anXCoord = resultSet.getInt("xCoord");
+      int aYCoord = resultSet.getInt("yCoord");
+      String aLongName = resultSet.getString("longName");
+      String aShortName = resultSet.getString("shortName");
+      String aBuilding = resultSet.getString("buildng");
+      String aBuildingFloor = resultSet.getString("buildingFloor");
+      String aNodeType = resultSet.getString("nodeType");
+      outputFileWriter.write("\n");
+      outputFileWriter.write(
+              aNodeID
+                      + ","
+                      + anXCoord
+                      + ","
+                      + aYCoord
+                      + ","
+                      + aLongName
+                      + ","
+                      + aShortName
+                      + ","
+                      + aBuilding
+                      + ","
+                      + aBuildingFloor
+                      + ","
+                      + aNodeType);
+    }
+    outputFileWriter.flush();
+    outputFileWriter.close();
+  }
+
+  public void readCSV(String filePath) throws FileNotFoundException, SQLException {
+    Scanner sc = new Scanner(new File(filePath));
+    sc.useDelimiter(",");
+    while (sc.hasNextLine()) {
+      String nodeID = sc.next();
+      int xCoord = sc.nextInt();
+      int yCoord = sc.nextInt();
+      String longName = sc.next();
+      String shortName = sc.next();
+      String building = sc.next();
+      String buildingFloor = sc.next();
+      String nodeType = sc.next();
+      statement.executeUpdate(
+              "insert into node"
+                      + "(nodeID, xcoord, ycoord, buildingFloor, building, nodeType, longName, shortName) VALUES ('"
+                      + nodeID
+                      + "', "
+                      + xCoord
+                      + ", "
+                      + yCoord
+                      + ", '"
+                      + buildingFloor
+                      + "', '"
+                      + building
+                      + "', "
+                      + nodeType
+                      + "', "
+                      + longName
+                      + "', '"
+                      + shortName
+                      + "');");
+      Node aNode = new Node(nodeID, xCoord, yCoord, longName, shortName, building, buildingFloor, nodeType);
+      nodes.add(aNode);
+    }
+
+    sc.close();
   }
 }

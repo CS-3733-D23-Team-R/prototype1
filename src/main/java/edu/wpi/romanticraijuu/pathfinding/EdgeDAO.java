@@ -1,10 +1,15 @@
 package edu.wpi.romanticraijuu.pathfinding;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class EdgeDAO {
 
@@ -83,5 +88,42 @@ public class EdgeDAO {
       if (edgesAreSame) return edge;
     }
     throw new TupleNotFoundException("Node not found");
+  }
+
+  public void readCSV(String filePath) throws SQLException, FileNotFoundException {
+    Scanner sc = new Scanner(new File(filePath));
+    sc.useDelimiter(",");
+    while (sc.hasNextLine()) {
+      String edgeID = sc.next();
+      String startNode = sc.next();
+      String endNode = sc.next();
+      statement.executeUpdate(
+              "INSERT INTO edge(edgeID, startNode, endNode) VALUES ('"
+                      + edgeID
+                      + "','"
+                      + startNode
+                      + "','"
+                      + endNode
+                      + "');");
+      Edge anEdge = new Edge(startNode, endNode, edgeID);
+      edges.add(anEdge);
+    }
+    sc.close();
+  }
+
+  public void writeCSV(String filePath) throws SQLException, IOException {
+    ResultSet resultSet = statement.executeQuery("SELECT * FROM edge");
+    File csvFile = new File(filePath);
+    FileWriter outputFileWriter = new FileWriter(csvFile);
+    outputFileWriter.write("edgeID,startNode,endNode");
+    while (resultSet.next()) {
+      String anEdgeID = resultSet.getString("edgeID");
+      String aStartNode = resultSet.getString("startNode");
+      String anEndNode = resultSet.getString("endNode");
+      outputFileWriter.write("\n");
+      outputFileWriter.write(anEdgeID + "," + aStartNode + "," + anEndNode);
+    }
+    outputFileWriter.flush();
+    outputFileWriter.close();
   }
 }
