@@ -1,8 +1,5 @@
 package edu.wpi.romanticraijuu.controllers;
 
-import edu.wpi.romanticraijuu.navigation.Navigation;
-import edu.wpi.romanticraijuu.navigation.Screen;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
@@ -13,12 +10,8 @@ public class HelpController extends Application {
     launch(args);
   }
 
-  @FXML MFXButton helpButton;
-
   @FXML
-  public void initialize() {
-    helpButton.setOnMouseClicked(event -> Navigation.navigate(Screen.HOME));
-  }
+  public void initialize() {}
 
   @FXML
   public void close(Stage primaryStage) {
@@ -26,5 +19,7 @@ public class HelpController extends Application {
   }
 
   @Override
-  public void start(Stage primaryStage) {}
+  public void start(Stage primaryStage) {
+    primaryStage.show();
+  }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -84,13 +85,6 @@
                </children>
             </HBox>
          </center>
-         <top>
-            <MFXButton fx:id="helpButton" alignment="CENTER" text="Help" textAlignment="CENTER" underline="true" BorderPane.alignment="TOP_RIGHT">
-               <font>
-                  <Font name="Times New Roman" size="12.0" />
-               </font>
-            </MFXButton>
-         </top>
          <bottom>
             <HBox prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
@@ -107,13 +101,22 @@
                </children>
             </HBox>
          </bottom>
-         <right>
-            <MFXButton fx:id="exitButton" alignment="CENTER" text="Exit" textAlignment="CENTER" underline="true" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Times New Roman" size="12.0" />
-               </font>
-            </MFXButton>
-         </right>
+         <top>
+            <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <items>
+                  <MFXButton fx:id="helpButton" alignment="CENTER" text="Help" textAlignment="CENTER" underline="true">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton fx:id="exitButton" alignment="CENTER" text="Exit" textAlignment="CENTER" underline="true">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                  </MFXButton>
+              </items>
+            </ToolBar>
+         </top>
       </BorderPane>
    </children>
 </StackPane>
