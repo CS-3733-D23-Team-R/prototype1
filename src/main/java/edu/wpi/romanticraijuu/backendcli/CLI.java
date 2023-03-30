@@ -189,8 +189,28 @@ public class CLI {
           e.printStackTrace();
         }
         break;
-      case "10": // 10- Display help on how to use this program //TODO: FINISH WHEN THE CLI IS
-        System.out.println("Help Menu:\n");
+      case "10": // 10- Display help on how to use this program
+        System.out.println("Help Menu:\n"
+        + "You can perform a variety of tasks with this tool such as viewing, updating, and creating\n"
+        + "nodes, viewing edges, and viewing a path between nodes. Here is some additional information:\n"
+        + "Option 1: Selecting this option will display all of the NodeID(s) contained within the database\n"
+        + "which will be very useful for other options on this list\n"
+        + "Option 2: Selecting this option will allow you to navigate between two nodes by using their NodeIDs.\n"
+        + "Option 3: Selecting this option with display all of the EdgeID(s) contained within the database\n"
+        + "Option 4: Display information about a node given it's NodeID. You can see information like the node's\n"
+        + "coordinates, floor, building, type, longname, and shortname"
+        + "Option 5: Display information about an edge given it's EdgeID. You can see it's starting and ending nodes\n"
+        + "Option 6: Update the node coordinates given a NodeID. You need to enter a NodeID and then x and y coordinates\n"
+        + "as integers when prompted"
+        + "Option 7: Update the location name of the node using the NodeID. You need to ender a NodeID and then the new name\n"
+        + "Option 8: Export the node table into a csv file given by the user. You will be prompted for an output file which\n"
+        + "you must do with an absolute path (no ~ for home). This will give you a csv containing all of the data within the\n"
+        + "database"
+        + "Option 9: Import into the node table using a csv. The csv should have the first row containing the column names\n"
+        + "which need to be in the following order: NodeID, xcoord, ycoord, floor, building, nodetype, longname, shortname\n"
+        + "and must be seperated by a comma only without an additional space"
+        + "Option 10: Open the help menu (this page)"
+        + "Option 11: Exit the application");
         break;
       case "11": // 11- Exit the program
         return false; // exits the program
