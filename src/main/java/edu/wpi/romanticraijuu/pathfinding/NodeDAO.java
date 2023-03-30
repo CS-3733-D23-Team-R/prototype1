@@ -19,7 +19,6 @@ public class NodeDAO {
 
   public NodeDAO(Connection connection, String tableName) throws SQLException {
     nodes = new ArrayList<Node>();
-    connection = connection;
     this.tableName = tableName;
     this.statement = connection.createStatement();
 
@@ -162,32 +161,32 @@ public class NodeDAO {
       String nodeID,
       int xCoord,
       int yCoord,
-      String buildingFloor,
-      String building,
-      String nodeType,
       String longName,
-      String shortName)
+      String shortName,
+      String building,
+      String buildingFloor,
+      String nodeType)
       throws SQLException {
     statement.executeUpdate(
         "insert into "
             + tableName
-            + "(nodeID, xcoord, ycoord, buildingFloor, building, nodeType, longName, shortName) VALUES ('"
+            + "(nodeID, xcoord, ycoord, longName, shortName, building, buildingFloor, nodeType) VALUES (\'"
             + nodeID
-            + "', "
+            + "\', "
             + xCoord
             + ", "
             + yCoord
-            + ", '"
-            + buildingFloor
-            + "', '"
-            + building
-            + "', "
-            + nodeType
-            + "', "
+            + ", \'"
             + longName
-            + "', '"
+            + "\', \'"
             + shortName
-            + "');");
+            + "\', \'"
+            + building
+            + "\', \'"
+            + buildingFloor
+            + "\', \'"
+            + nodeType
+            + "\');");
     Node node =
         new Node(nodeID, xCoord, yCoord, buildingFloor, building, nodeType, longName, shortName);
     nodes.add(node);
@@ -232,15 +231,15 @@ public class NodeDAO {
               + ","
               + aYCoord
               + ","
-              + aLongName
-              + ","
-              + aShortName
+              + aBuildingFloor
               + ","
               + aBuilding
               + ","
-              + aBuildingFloor
+              + aNodeType
               + ","
-              + aNodeType);
+              + aLongName
+              + ","
+              + aShortName);
     }
     outputFileWriter.flush();
     outputFileWriter.close();
@@ -248,39 +247,18 @@ public class NodeDAO {
 
   public void readCSV(String filePath) throws FileNotFoundException, SQLException {
     Scanner sc = new Scanner(new File(filePath));
-    sc.useDelimiter(",");
-    while (sc.hasNextLine()) {
+    sc.useDelimiter(",|\n");
+    sc.nextLine();
+    while (sc.hasNextLine() & sc.hasNext()) {
       String nodeID = sc.next();
       int xCoord = sc.nextInt();
       int yCoord = sc.nextInt();
+      String buildingFloor = sc.next();
+      String building = sc.next();
+      String nodeType = sc.next();
       String longName = sc.next();
       String shortName = sc.next();
-      String building = sc.next();
-      String buildingFloor = sc.next();
-      String nodeType = sc.next();
-      statement.executeUpdate(
-          "insert into "
-              + tableName
-              + "(nodeID, xcoord, ycoord, buildingFloor, building, nodeType, longName, shortName) VALUES ('"
-              + nodeID
-              + "', "
-              + xCoord
-              + ", "
-              + yCoord
-              + ", '"
-              + buildingFloor
-              + "', '"
-              + building
-              + "', "
-              + nodeType
-              + "', "
-              + longName
-              + "', '"
-              + shortName
-              + "');");
-      Node aNode =
-          new Node(nodeID, xCoord, yCoord, longName, shortName, building, buildingFloor, nodeType);
-      nodes.add(aNode);
+      addNode(nodeID, xCoord, yCoord, longName, shortName, building, buildingFloor, nodeType);
     }
 
     sc.close();

@@ -62,14 +62,16 @@ public class CLI {
         break;
       case "2": // 2- Display pathes between nodes
         String startID = getGeneralInput("Enter starting node ID: ");
-        if (!isValidNode(startID)){
-          System.out.println("That node is invalid. Please double check your node and then try again");
+        if (!isValidNode(startID)) {
+          System.out.println(
+              "That node is invalid. Please double check your node and then try again");
           return true;
         }
 
         String endID = getGeneralInput("Enter ending node ID: ");
-        if (!isValidNode(endID)){
-          System.out.println("That node is invalid. Please double check your node and then try again");
+        if (!isValidNode(endID)) {
+          System.out.println(
+              "That node is invalid. Please double check your node and then try again");
           return true;
         }
 
@@ -91,8 +93,9 @@ public class CLI {
         break;
       case "4": // 4- Display information for node
         userNodeID = getGeneralInput("Enter the NodeID of the desired node");
-        if (!isValidNode(userNodeID)){
-          System.out.println("That node is invalid. Please double check your node and then try again");
+        if (!isValidNode(userNodeID)) {
+          System.out.println(
+              "That node is invalid. Please double check your node and then try again");
           return true;
         }
 
@@ -113,8 +116,9 @@ public class CLI {
         break;
       case "5": // 5- Display information for edge
         userEdgeID = getGeneralInput("Enter the EdgeID of the desired edge");
-        if (!isValidEdge(userEdgeID)){
-          System.out.println("That edge is invalid. Please double check your edge and then try again");
+        if (!isValidEdge(userEdgeID)) {
+          System.out.println(
+              "That edge is invalid. Please double check your edge and then try again");
           return true;
         }
 
@@ -130,8 +134,9 @@ public class CLI {
         break;
       case "6": // 6- Update node coordinates
         userNodeID = getGeneralInput("Enter the NodeID of node you wish to modify");
-        if (!isValidNode(userNodeID)){
-          System.out.println("That node is invalid. Please double check your node and then try again");
+        if (!isValidNode(userNodeID)) {
+          System.out.println(
+              "That node is invalid. Please double check your node and then try again");
           return true;
         }
 
@@ -150,8 +155,9 @@ public class CLI {
         break;
       case "7": // 7- Update name of a location node
         userNodeID = getGeneralInput("Enter the NodeID of node you wish to modify");
-        if (!isValidNode(userNodeID)){
-          System.out.println("That node is invalid. Please double check your node and then try again");
+        if (!isValidNode(userNodeID)) {
+          System.out.println(
+              "That node is invalid. Please double check your node and then try again");
           return true;
         }
 
@@ -220,7 +226,7 @@ public class CLI {
   }
 
   private static boolean isValidNode(String nodeID) {
-    try{
+    try {
       nodeDAO.getNodeByID(nodeID);
       return true;
     } catch (TupleNotFoundException e) {
@@ -229,7 +235,7 @@ public class CLI {
   }
 
   private static boolean isValidEdge(String edgeID) {
-    try{
+    try {
       edgeDAO.getEdgeByID(edgeID);
       return true;
     } catch (TupleNotFoundException e) {
