@@ -35,8 +35,6 @@ public class CLI {
     }
   }
 
-  private static void runAlgorithmCLI() {}
-
   private static boolean giveCLIOptions() {
     String input =
         getSpecificInput(
